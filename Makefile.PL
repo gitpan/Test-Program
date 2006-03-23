@@ -10,8 +10,9 @@ WriteMakefile(
     PL_FILES            => {},
     PREREQ_PM => {
         'Exporter' => 0,
-        'Test::More' => 0,
         'Test::Builder::Tester' => 0,
+        'Test::More' => 0,
+        'Test::Pod' => 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Test-Program-*' },

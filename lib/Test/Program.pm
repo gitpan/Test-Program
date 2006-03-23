@@ -9,11 +9,11 @@ Test::Program - Testing tools for Perl programs
 
 =head1 VERSION
 
-Version 0.01
+Version 0.04
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
@@ -44,7 +44,10 @@ All the C<*_ok> functions are exported by default.
 
 =cut
 
-our @EXPORT_OK = qw( program_compiles_ok );
+our @EXPORT_OK = qw(
+    program_compiles_ok
+    program_pod_ok
+);
 our @EXPORT = @EXPORT_OK;
 
 =head1 FUNCTIONS
@@ -77,23 +80,40 @@ sub program_compiles_ok {
 
     my ($exit,$sig) = ($? >> 8, $? & 127);
 
+    my $msg = "$program compiles";
     if ( $exit ) {
-        $Test->ok( 0, "$program does not compile" );
+        $Test->ok( 0, $msg );
+        $Test->diag( @output );
         $Test->diag( "Returned error code $exit" );
         return;
     }
 
     my $ok = ( (@output == 1) && ($output[0] eq "$program syntax OK\n" ) );
-    if ( $ok ) {
-        $Test->ok( $ok, "$program compiles" );
-    }
-    else {
-        $Test->ok( $ok, "$program compiles with warnings" );
+    $Test->ok( $ok, $msg );
+    if ( !$ok ) {
+        $Test->diag( "Warnings:" );
         $Test->diag( @output );
     }
 
     return $ok;
 }
+
+=head2 program_pod_ok( $program )
+
+Checks to see that I<$program> has valid POD.
+
+=cut
+
+sub program_pod_ok {
+    my $program = shift;
+
+    require Test::Pod;
+
+    local $Test::Builder::Level = $Test::Builder::Level + 1;
+
+    return Test::Pod::pod_file_ok( $program, "$program POD OK" );
+}
+
 
 =head1 PRIVATE FUNCTIONS
 
@@ -158,6 +178,8 @@ L<http://search.cpan.org/dist/Test-Program>
 =back
 
 =head1 ACKNOWLEDGEMENTS
+
+Thanks to Matt Liggett for the original idea and push to do it.
 
 =head1 COPYRIGHT & LICENSE
 
