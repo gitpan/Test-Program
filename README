@@ -1,0 +1,55 @@
+Test-Program
+
+You've written a command-line program, not just a module, and you want to make sure that
+it compiles, runs and has valid POD embedded.
+
+    use Test::Program tests => 3;
+
+    my $program = "bin/flooble";
+
+    program_compiles_ok( $program );
+    program_pod_ok( $program );
+    program_help_ok( $program );
+    program_version_ok( $program );
+
+    # or...
+
+    program_all_ok( $program );
+
+
+INSTALLATION
+
+To install this module, run the following commands:
+
+    perl Makefile.PL
+    make
+    make test
+    make install
+
+
+SUPPORT AND DOCUMENTATION
+
+After installing, you can find documentation for this module with the perldoc command.
+
+    perldoc Test::Program
+
+You can also look for information at:
+
+    Search CPAN
+        http://search.cpan.org/dist/Test-Program
+
+    CPAN Request Tracker:
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Test-Program
+
+    AnnoCPAN, annotated CPAN documentation:
+        http://annocpan.org/dist/Test-Program
+
+    CPAN Ratings:
+        http://cpanratings.perl.org/d/Test-Program
+
+COPYRIGHT AND LICENCE
+
+Copyright (C) 2006 Andy Lester
+
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.

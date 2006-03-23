@@ -1,0 +1,15 @@
+Changes
+MANIFEST
+Makefile.PL
+README
+lib/Test/Program.pm
+t/00-load.t
+t/compiles_ok.t
+t/pod-coverage.t
+t/pod.t
+t/shebang.t
+
+t/bin/clean.pl
+t/bin/non-compiling.pl
+t/bin/warnings.pl
+META.yml                                 Module meta-data (added by MakeMaker)
