@@ -9,11 +9,11 @@ Test::Program - Testing tools for Perl programs
 
 =head1 VERSION
 
-Version 0.04
+Version 0.10
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.10';
 
 =head1 SYNOPSIS
 
@@ -91,7 +91,7 @@ sub program_compiles_ok {
     my $ok = ( (@output == 1) && ($output[0] eq "$program syntax OK\n" ) );
     $Test->ok( $ok, $msg );
     if ( !$ok ) {
-        $Test->diag( "Warnings:" );
+        $Test->diag( 'Warnings:' );
         $Test->diag( @output );
     }
 
@@ -127,7 +127,7 @@ in the program.
 sub shebang_switches {
     my $program = shift;
 
-    open( my $fh, "<", $program ) or die "Can't open $program for reading: $!\n";
+    open( my $fh, '<', $program ) or die "Can't open $program for reading: $!\n";
     my $line = <$fh>;
     close $fh;
 

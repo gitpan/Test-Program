@@ -2,7 +2,9 @@ Changes
 MANIFEST
 Makefile.PL
 README
-lib/Test/Program.pm
+Program.pm
+perlcriticrc
+
 t/00-load.t
 t/compiles_ok.t
 t/pod-coverage.t
